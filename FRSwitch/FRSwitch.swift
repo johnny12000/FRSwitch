@@ -8,6 +8,7 @@
 import UIKit
 import QuartzCore
 
+@IBDesignable
 open class FRSwitch: UIControl {
     let initialFrame = CGRect(x: 0, y: 0, width: 61, height: 22)
     var arc: CAShapeLayer?
@@ -124,7 +125,8 @@ open class FRSwitch: UIControl {
                 thumbView.layer.cornerRadius = 2
             }
 
-            thumbView.layer.shadowPath = UIBezierPath(roundedRect: thumbView.bounds, cornerRadius: thumbView.layer.cornerRadius).cgPath
+            thumbView.layer.shadowPath = UIBezierPath(
+                roundedRect: thumbView.bounds, cornerRadius: thumbView.layer.cornerRadius).cgPath
         }
     }
 
@@ -255,8 +257,8 @@ open class FRSwitch: UIControl {
         backgroundView.addSubview(offLabel)
 
         // thumb
-        self.thumbView = UIView(frame: CGRect(x: 1,
-            y: 1,
+        self.thumbView = UIView(frame: CGRect(x: 0.5,
+            y: 0.5,
             width: initialFrame.height - 2,
             height: initialFrame.height - 2))
         thumbView.backgroundColor = self.thumbTintColor
@@ -278,13 +280,15 @@ open class FRSwitch: UIControl {
         thumbView.layer.shadowRadius = 2.0
         thumbView.layer.shadowOpacity = 0.5
         thumbView.layer.shadowOffset = CGSize(width: 0, height: 3)
-        thumbView.layer.shadowPath = UIBezierPath(roundedRect: thumbView.bounds, cornerRadius: thumbView.layer.cornerRadius).cgPath
+        thumbView.layer.shadowPath = UIBezierPath(
+            roundedRect: thumbView.bounds, cornerRadius: thumbView.layer.cornerRadius).cgPath
         thumbView.layer.masksToBounds = false
         thumbView.isUserInteractionEnabled = false
         self.addSubview(thumbView)
 
         // thumb image
-        self.thumbImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: thumbView.frame.size.width, height: thumbView.frame.size.height))
+        self.thumbImageView = UIImageView(frame: CGRect(
+            x: 0, y: 0, width: thumbView.frame.size.width, height: thumbView.frame.size.height))
         thumbImageView.contentMode = UIViewContentMode.center
         thumbImageView.autoresizingMask = UIViewAutoresizing.flexibleWidth
         thumbView.addSubview(thumbImageView)
@@ -301,7 +305,10 @@ open class FRSwitch: UIControl {
         let activeKnobWidth = initialFrame.height - 2 + 5
         isAnimating = true
 
-        UIView.animate(withDuration: 0.3, delay: 0.0, options: [UIViewAnimationOptions.curveEaseOut, UIViewAnimationOptions.beginFromCurrentState], animations: {
+        UIView.animate(
+            withDuration: 0.3, delay: 0.0,
+            options: [UIViewAnimationOptions.curveEaseOut, UIViewAnimationOptions.beginFromCurrentState],
+            animations: {
             if self.on {
                 self.thumbView.frame = CGRect(x: self.initialFrame.width - (activeKnobWidth + 1),
                     y: self.thumbView.frame.origin.y,
@@ -408,7 +415,10 @@ open class FRSwitch: UIControl {
         let activeKnobWidth = normalKnobWidth + 5
         if animated {
             isAnimating = true
-            UIView.animate(withDuration: 0.3, delay: 0.0, options: [UIViewAnimationOptions.curveEaseOut, UIViewAnimationOptions.beginFromCurrentState], animations: {
+            UIView.animate(
+                withDuration: 0.3, delay: 0.0,
+                options: [UIViewAnimationOptions.curveEaseOut, UIViewAnimationOptions.beginFromCurrentState],
+                animations: {
                 if self.isTracking {
                     self.thumbView.frame = CGRect(x: self.initialFrame.width - (activeKnobWidth + 1),
                         y: self.thumbView.frame.origin.y,
@@ -465,7 +475,9 @@ open class FRSwitch: UIControl {
 
         if animated {
             isAnimating = true
-            UIView.animate(withDuration: 0.3, delay: 0.0, options: [UIViewAnimationOptions.curveEaseOut, UIViewAnimationOptions.beginFromCurrentState], animations: {
+            UIView.animate(withDuration: 0.3, delay: 0.0,
+                           options: [UIViewAnimationOptions.curveEaseOut, UIViewAnimationOptions.beginFromCurrentState],
+                           animations: {
                 if self.isTracking {
                     self.thumbView.frame = CGRect(x: 1,
                         y: self.thumbView.frame.origin.y,
@@ -490,7 +502,7 @@ open class FRSwitch: UIControl {
                     self.isAnimating = false
             })
         } else {
-            if (self.isTracking) {
+            if self.isTracking {
                 thumbView.frame = CGRect(x: 1,
                     y: thumbView.frame.origin.y,
                     width: activeKnobWidth,
@@ -517,5 +529,4 @@ open class FRSwitch: UIControl {
     override open var intrinsicContentSize: CGSize {
         return initialFrame.size
     }
-
 }
