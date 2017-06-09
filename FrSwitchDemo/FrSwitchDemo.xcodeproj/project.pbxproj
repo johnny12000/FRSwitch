@@ -1,0 +1,557 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B23ACC091EEA91990059642F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23ACC081EEA91990059642F /* AppDelegate.swift */; };
+		B23ACC0B1EEA91990059642F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23ACC0A1EEA91990059642F /* ViewController.swift */; };
+		B23ACC0E1EEA91990059642F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B23ACC0C1EEA91990059642F /* Main.storyboard */; };
+		B23ACC111EEA91990059642F /* FrSwitchDemo.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B23ACC0F1EEA91990059642F /* FrSwitchDemo.xcdatamodeld */; };
+		B23ACC131EEA91990059642F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B23ACC121EEA91990059642F /* Assets.xcassets */; };
+		B23ACC161EEA91990059642F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B23ACC141EEA91990059642F /* LaunchScreen.storyboard */; };
+		B23ACC211EEA91990059642F /* FrSwitchDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23ACC201EEA91990059642F /* FrSwitchDemoTests.swift */; };
+		B23ACC2C1EEA91990059642F /* FrSwitchDemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23ACC2B1EEA91990059642F /* FrSwitchDemoUITests.swift */; };
+		B23ACC3F1EEA93F10059642F /* FRSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = B23ACC3E1EEA93F10059642F /* FRSwitch.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B23ACC1D1EEA91990059642F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B23ACBFD1EEA91990059642F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B23ACC041EEA91990059642F;
+			remoteInfo = FrSwitchDemo;
+		};
+		B23ACC281EEA91990059642F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B23ACBFD1EEA91990059642F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B23ACC041EEA91990059642F;
+			remoteInfo = FrSwitchDemo;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		B23ACC051EEA91990059642F /* FrSwitchDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FrSwitchDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B23ACC081EEA91990059642F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		B23ACC0A1EEA91990059642F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		B23ACC0D1EEA91990059642F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		B23ACC101EEA91990059642F /* FrSwitchDemo.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FrSwitchDemo.xcdatamodel; sourceTree = "<group>"; };
+		B23ACC121EEA91990059642F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		B23ACC151EEA91990059642F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		B23ACC171EEA91990059642F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B23ACC1C1EEA91990059642F /* FrSwitchDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FrSwitchDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B23ACC201EEA91990059642F /* FrSwitchDemoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrSwitchDemoTests.swift; sourceTree = "<group>"; };
+		B23ACC221EEA91990059642F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B23ACC271EEA91990059642F /* FrSwitchDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FrSwitchDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		B23ACC2B1EEA91990059642F /* FrSwitchDemoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrSwitchDemoUITests.swift; sourceTree = "<group>"; };
+		B23ACC2D1EEA91990059642F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B23ACC3E1EEA93F10059642F /* FRSwitch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = FRSwitch.swift; path = ../FRSwitch/FRSwitch.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B23ACC021EEA91990059642F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B23ACC191EEA91990059642F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B23ACC241EEA91990059642F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B23ACBFC1EEA91990059642F = {
+			isa = PBXGroup;
+			children = (
+				B23ACC391EEA91B80059642F /* FrSwitch */,
+				B23ACC071EEA91990059642F /* FrSwitchDemo */,
+				B23ACC1F1EEA91990059642F /* FrSwitchDemoTests */,
+				B23ACC2A1EEA91990059642F /* FrSwitchDemoUITests */,
+				B23ACC061EEA91990059642F /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B23ACC061EEA91990059642F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B23ACC051EEA91990059642F /* FrSwitchDemo.app */,
+				B23ACC1C1EEA91990059642F /* FrSwitchDemoTests.xctest */,
+				B23ACC271EEA91990059642F /* FrSwitchDemoUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B23ACC071EEA91990059642F /* FrSwitchDemo */ = {
+			isa = PBXGroup;
+			children = (
+				B23ACC081EEA91990059642F /* AppDelegate.swift */,
+				B23ACC0A1EEA91990059642F /* ViewController.swift */,
+				B23ACC0C1EEA91990059642F /* Main.storyboard */,
+				B23ACC121EEA91990059642F /* Assets.xcassets */,
+				B23ACC141EEA91990059642F /* LaunchScreen.storyboard */,
+				B23ACC171EEA91990059642F /* Info.plist */,
+				B23ACC0F1EEA91990059642F /* FrSwitchDemo.xcdatamodeld */,
+			);
+			path = FrSwitchDemo;
+			sourceTree = "<group>";
+		};
+		B23ACC1F1EEA91990059642F /* FrSwitchDemoTests */ = {
+			isa = PBXGroup;
+			children = (
+				B23ACC201EEA91990059642F /* FrSwitchDemoTests.swift */,
+				B23ACC221EEA91990059642F /* Info.plist */,
+			);
+			path = FrSwitchDemoTests;
+			sourceTree = "<group>";
+		};
+		B23ACC2A1EEA91990059642F /* FrSwitchDemoUITests */ = {
+			isa = PBXGroup;
+			children = (
+				B23ACC2B1EEA91990059642F /* FrSwitchDemoUITests.swift */,
+				B23ACC2D1EEA91990059642F /* Info.plist */,
+			);
+			path = FrSwitchDemoUITests;
+			sourceTree = "<group>";
+		};
+		B23ACC391EEA91B80059642F /* FrSwitch */ = {
+			isa = PBXGroup;
+			children = (
+				B23ACC3E1EEA93F10059642F /* FRSwitch.swift */,
+			);
+			name = FrSwitch;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B23ACC041EEA91990059642F /* FrSwitchDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B23ACC301EEA91990059642F /* Build configuration list for PBXNativeTarget "FrSwitchDemo" */;
+			buildPhases = (
+				B23ACC011EEA91990059642F /* Sources */,
+				B23ACC021EEA91990059642F /* Frameworks */,
+				B23ACC031EEA91990059642F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FrSwitchDemo;
+			productName = FrSwitchDemo;
+			productReference = B23ACC051EEA91990059642F /* FrSwitchDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+		B23ACC1B1EEA91990059642F /* FrSwitchDemoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B23ACC331EEA91990059642F /* Build configuration list for PBXNativeTarget "FrSwitchDemoTests" */;
+			buildPhases = (
+				B23ACC181EEA91990059642F /* Sources */,
+				B23ACC191EEA91990059642F /* Frameworks */,
+				B23ACC1A1EEA91990059642F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B23ACC1E1EEA91990059642F /* PBXTargetDependency */,
+			);
+			name = FrSwitchDemoTests;
+			productName = FrSwitchDemoTests;
+			productReference = B23ACC1C1EEA91990059642F /* FrSwitchDemoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		B23ACC261EEA91990059642F /* FrSwitchDemoUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B23ACC361EEA91990059642F /* Build configuration list for PBXNativeTarget "FrSwitchDemoUITests" */;
+			buildPhases = (
+				B23ACC231EEA91990059642F /* Sources */,
+				B23ACC241EEA91990059642F /* Frameworks */,
+				B23ACC251EEA91990059642F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B23ACC291EEA91990059642F /* PBXTargetDependency */,
+			);
+			name = FrSwitchDemoUITests;
+			productName = FrSwitchDemoUITests;
+			productReference = B23ACC271EEA91990059642F /* FrSwitchDemoUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B23ACBFD1EEA91990059642F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = fr;
+				TargetAttributes = {
+					B23ACC041EEA91990059642F = {
+						CreatedOnToolsVersion = 8.3.2;
+						ProvisioningStyle = Automatic;
+					};
+					B23ACC1B1EEA91990059642F = {
+						CreatedOnToolsVersion = 8.3.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = B23ACC041EEA91990059642F;
+					};
+					B23ACC261EEA91990059642F = {
+						CreatedOnToolsVersion = 8.3.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = B23ACC041EEA91990059642F;
+					};
+				};
+			};
+			buildConfigurationList = B23ACC001EEA91990059642F /* Build configuration list for PBXProject "FrSwitchDemo" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = B23ACBFC1EEA91990059642F;
+			productRefGroup = B23ACC061EEA91990059642F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B23ACC041EEA91990059642F /* FrSwitchDemo */,
+				B23ACC1B1EEA91990059642F /* FrSwitchDemoTests */,
+				B23ACC261EEA91990059642F /* FrSwitchDemoUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B23ACC031EEA91990059642F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B23ACC161EEA91990059642F /* LaunchScreen.storyboard in Resources */,
+				B23ACC131EEA91990059642F /* Assets.xcassets in Resources */,
+				B23ACC0E1EEA91990059642F /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B23ACC1A1EEA91990059642F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B23ACC251EEA91990059642F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B23ACC011EEA91990059642F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B23ACC0B1EEA91990059642F /* ViewController.swift in Sources */,
+				B23ACC111EEA91990059642F /* FrSwitchDemo.xcdatamodeld in Sources */,
+				B23ACC091EEA91990059642F /* AppDelegate.swift in Sources */,
+				B23ACC3F1EEA93F10059642F /* FRSwitch.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B23ACC181EEA91990059642F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B23ACC211EEA91990059642F /* FrSwitchDemoTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B23ACC231EEA91990059642F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B23ACC2C1EEA91990059642F /* FrSwitchDemoUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B23ACC1E1EEA91990059642F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B23ACC041EEA91990059642F /* FrSwitchDemo */;
+			targetProxy = B23ACC1D1EEA91990059642F /* PBXContainerItemProxy */;
+		};
+		B23ACC291EEA91990059642F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = B23ACC041EEA91990059642F /* FrSwitchDemo */;
+			targetProxy = B23ACC281EEA91990059642F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		B23ACC0C1EEA91990059642F /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B23ACC0D1EEA91990059642F /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		B23ACC141EEA91990059642F /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B23ACC151EEA91990059642F /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		B23ACC2E1EEA91990059642F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		B23ACC2F1EEA91990059642F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		B23ACC311EEA91990059642F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = FrSwitchDemo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = fr.FrSwitchDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		B23ACC321EEA91990059642F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = FrSwitchDemo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = fr.FrSwitchDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		B23ACC341EEA91990059642F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = FrSwitchDemoTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = fr.FrSwitchDemoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FrSwitchDemo.app/FrSwitchDemo";
+			};
+			name = Debug;
+		};
+		B23ACC351EEA91990059642F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = FrSwitchDemoTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = fr.FrSwitchDemoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FrSwitchDemo.app/FrSwitchDemo";
+			};
+			name = Release;
+		};
+		B23ACC371EEA91990059642F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				INFOPLIST_FILE = FrSwitchDemoUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = fr.FrSwitchDemoUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = FrSwitchDemo;
+			};
+			name = Debug;
+		};
+		B23ACC381EEA91990059642F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				INFOPLIST_FILE = FrSwitchDemoUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = fr.FrSwitchDemoUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_TARGET_NAME = FrSwitchDemo;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B23ACC001EEA91990059642F /* Build configuration list for PBXProject "FrSwitchDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B23ACC2E1EEA91990059642F /* Debug */,
+				B23ACC2F1EEA91990059642F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B23ACC301EEA91990059642F /* Build configuration list for PBXNativeTarget "FrSwitchDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B23ACC311EEA91990059642F /* Debug */,
+				B23ACC321EEA91990059642F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		B23ACC331EEA91990059642F /* Build configuration list for PBXNativeTarget "FrSwitchDemoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B23ACC341EEA91990059642F /* Debug */,
+				B23ACC351EEA91990059642F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		B23ACC361EEA91990059642F /* Build configuration list for PBXNativeTarget "FrSwitchDemoUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B23ACC371EEA91990059642F /* Debug */,
+				B23ACC381EEA91990059642F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		B23ACC0F1EEA91990059642F /* FrSwitchDemo.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				B23ACC101EEA91990059642F /* FrSwitchDemo.xcdatamodel */,
+			);
+			currentVersion = B23ACC101EEA91990059642F /* FrSwitchDemo.xcdatamodel */;
+			path = FrSwitchDemo.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = B23ACBFD1EEA91990059642F /* Project object */;
+}

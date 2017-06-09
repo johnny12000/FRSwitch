@@ -30,7 +30,7 @@ open class FRSwitch: UIControl {
     *	Sets the background color that shows when the switch off and actively being touched.
     *   Defaults to light gray.
     */
-    @IBInspectable open var activeColor: UIColor = UIColor.sleepyGray() {
+    @IBInspectable open var activeColor: UIColor = UIColor.gray {
         willSet {
             if self.on && !self.isTracking {
                 backgroundView.backgroundColor = newValue
@@ -42,7 +42,7 @@ open class FRSwitch: UIControl {
     *	Sets the background color when the switch is off.
     *   Defaults to clear color.
     */
-    @IBInspectable open var inactiveColor: UIColor = UIColor.sleepyGray() {
+    @IBInspectable open var inactiveColor: UIColor = UIColor.black {
         willSet {
             if !self.on && !self.isTracking {
                 backgroundView.backgroundColor = newValue
@@ -54,7 +54,7 @@ open class FRSwitch: UIControl {
     *   Sets the background color that shows when the switch is on.
     *   Defaults to green.
     */
-    @IBInspectable open var onTintColor: UIColor = UIColor.sleepyGray() {
+    @IBInspectable open var onTintColor: UIColor = UIColor.green {
         willSet {
             if self.on && !self.isTracking {
                 backgroundView.backgroundColor = newValue
@@ -66,7 +66,7 @@ open class FRSwitch: UIControl {
     /*
     *   Sets the border color that shows when the switch is off. Defaults to light gray.
     */
-    @IBInspectable open var borderColor: UIColor = UIColor.sleepyGray() {
+    @IBInspectable open var borderColor: UIColor = UIColor.brown {
         willSet {
             if !self.on {
                 backgroundView.layer.borderColor = newValue.cgColor
@@ -103,7 +103,7 @@ open class FRSwitch: UIControl {
     /*
     *	Sets the shadow color of the knob. Defaults to gray.
     */
-    @IBInspectable open var shadowColor: UIColor = UIColor.sleepyGray() {
+    @IBInspectable open var shadowColor: UIColor = UIColor.black {
         willSet {
             thumbView.layer.shadowColor = newValue.cgColor
         }
