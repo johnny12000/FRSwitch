@@ -12,6 +12,21 @@ import QuartzCore
 open class FRSwitch: UIControl {
     let initialFrame = CGRect(x: 0, y: 0, width: 61, height: 22)
     var arc: CAShapeLayer?
+
+    // internal
+    internal var backgroundView: UIView!
+    internal var thumbView: UIView!
+    internal var onImageView: UIImageView!
+    internal var offImageView: UIImageView!
+    internal var thumbImageView: UIImageView!
+    // private
+    fileprivate var currentVisualValue: Bool = false
+    fileprivate var startTrackingValue: Bool = false
+    fileprivate var didChangeWhileTracking: Bool = false
+    fileprivate var isAnimating: Bool = false
+    fileprivate var userDidSpecifyOnThumbTintColor: Bool = false
+    fileprivate var switchValue: Bool = false
+
     // public
 
     /*
@@ -173,23 +188,8 @@ open class FRSwitch: UIControl {
     */
     open var offLabel: UILabel!
 
-    // internal
-    internal var backgroundView: UIView!
-    internal var thumbView: UIView!
-    internal var onImageView: UIImageView!
-    internal var offImageView: UIImageView!
-    internal var thumbImageView: UIImageView!
-    // private
-    fileprivate var currentVisualValue: Bool = false
-    fileprivate var startTrackingValue: Bool = false
-    fileprivate var didChangeWhileTracking: Bool = false
-    fileprivate var isAnimating: Bool = false
-    fileprivate var userDidSpecifyOnThumbTintColor: Bool = false
-    fileprivate var switchValue: Bool = false
+    // MARK: - Initialization
 
-    /*
-    *   Initialization
-    */
     public convenience init() {
         self.init(frame: CGRect(x: 0, y: 0, width: 61, height: 22))
     }
@@ -206,6 +206,8 @@ open class FRSwitch: UIControl {
 
         self.setup()
     }
+
+    // MARK: - Utilities
 
     /*
     *   Setup the individual elements of the switch and set default values
