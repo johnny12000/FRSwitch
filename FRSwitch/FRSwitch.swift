@@ -20,12 +20,12 @@ open class FRSwitch: UIControl {
     internal var offImageView: UIImageView!
     internal var thumbImageView: UIImageView!
     // private
-    fileprivate var currentVisualValue: Bool = false
-    fileprivate var startTrackingValue: Bool = false
-    fileprivate var didChangeWhileTracking: Bool = false
-    fileprivate var isAnimating: Bool = false
-    fileprivate var userDidSpecifyOnThumbTintColor: Bool = false
-    fileprivate var switchValue: Bool = false
+    private var currentVisualValue: Bool = false
+    private var startTrackingValue: Bool = false
+    private var didChangeWhileTracking: Bool = false
+    private var isAnimating: Bool = false
+    private var userDidSpecifyOnThumbTintColor: Bool = false
+    private var switchValue: Bool = false
 
     // public
 
