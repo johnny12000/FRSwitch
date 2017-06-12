@@ -284,90 +284,6 @@ open class FRSwitch: UIControl {
         on = false
     }
 
-    override open func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
-        super.beginTracking(touch, with: event)
-
-        startTrackingValue = on
-        didChangeWhileTracking = false
-
-        let activeKnobWidth = initialFrame.height - 2 + 5
-        isAnimating = true
-
-        UIView.animate(
-            withDuration: 0.3, delay: 0.0,
-            options: [UIViewAnimationOptions.curveEaseOut, UIViewAnimationOptions.beginFromCurrentState],
-            animations: {
-            if self.on {
-                self.thumbView.frame = CGRect(x: self.initialFrame.width - (activeKnobWidth + 1),
-                    y: self.thumbView.frame.origin.y,
-                    width: activeKnobWidth,
-                    height: self.thumbView.frame.size.height)
-                self.backgroundView.backgroundColor = self.onTintColor
-                self.thumbView.backgroundColor = self.onThumbTintColor
-            } else {
-                self.thumbView.frame = CGRect(x: self.thumbView.frame.origin.x, y: self.thumbView.frame.origin.y,
-                    width: activeKnobWidth,
-                    height: self.thumbView.frame.size.height)
-                self.backgroundView.backgroundColor = self.activeColor
-                self.thumbView.backgroundColor = self.thumbTintColor
-            }
-            }, completion: { _ in
-                self.isAnimating = false
-        })
-
-        return true
-    }
-
-    override open func continueTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
-        super.continueTracking(touch, with: event)
-
-        // Get touch location
-        let lastPoint = touch.location(in: self)
-
-        // update the switch to the correct visuals depending on if
-        // they moved their touch to the right or left side of the switch
-        if lastPoint.x > initialFrame.width * 0.5 {
-            self.showOn(true)
-            if !startTrackingValue {
-                didChangeWhileTracking = true
-            }
-        } else {
-            self.showOff(true)
-            if startTrackingValue {
-                didChangeWhileTracking = true
-            }
-        }
-
-        return true
-    }
-
-    override open func endTracking(_ touch: UITouch?, with event: UIEvent?) {
-        super.endTracking(touch, with: event)
-
-        let previousValue = self.on
-
-        if didChangeWhileTracking {
-            self.setOn(currentVisualValue, animated: true)
-        } else {
-            self.setOn(!self.on, animated: true)
-        }
-
-        if previousValue != self.on {
-            self.sendActions(for: UIControlEvents.valueChanged)
-        }
-    }
-
-    override open func cancelTracking(with event: UIEvent?) {
-        super.cancelTracking(with: event)
-
-        // just animate back to the original value
-        if self.on {
-            self.showOn(true)
-        } else {
-            self.showOff(true)
-        }
-    }
-
     override open func layoutSubviews() {
         super.layoutSubviews()
     }
@@ -517,4 +433,91 @@ open class FRSwitch: UIControl {
     override open var intrinsicContentSize: CGSize {
         return initialFrame.size
     }
+
+    // MARK: - User gestures
+
+    override open func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
+        super.beginTracking(touch, with: event)
+
+        startTrackingValue = on
+        didChangeWhileTracking = false
+
+        let activeKnobWidth = initialFrame.height - 2 + 5
+        isAnimating = true
+
+        UIView.animate(
+            withDuration: 0.3, delay: 0.0,
+            options: [UIViewAnimationOptions.curveEaseOut, UIViewAnimationOptions.beginFromCurrentState],
+            animations: {
+                if self.on {
+                    self.thumbView.frame = CGRect(x: self.initialFrame.width - (activeKnobWidth + 1),
+                                                  y: self.thumbView.frame.origin.y,
+                                                  width: activeKnobWidth,
+                                                  height: self.thumbView.frame.size.height)
+                    self.backgroundView.backgroundColor = self.onTintColor
+                    self.thumbView.backgroundColor = self.onThumbTintColor
+                } else {
+                    self.thumbView.frame = CGRect(x: self.thumbView.frame.origin.x, y: self.thumbView.frame.origin.y,
+                                                  width: activeKnobWidth,
+                                                  height: self.thumbView.frame.size.height)
+                    self.backgroundView.backgroundColor = self.activeColor
+                    self.thumbView.backgroundColor = self.thumbTintColor
+                }
+        }, completion: { _ in
+            self.isAnimating = false
+        })
+
+        return true
+    }
+
+    override open func continueTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
+        super.continueTracking(touch, with: event)
+
+        // Get touch location
+        let lastPoint = touch.location(in: self)
+
+        // update the switch to the correct visuals depending on if
+        // they moved their touch to the right or left side of the switch
+        if lastPoint.x > initialFrame.width * 0.5 {
+            self.showOn(true)
+            if !startTrackingValue {
+                didChangeWhileTracking = true
+            }
+        } else {
+            self.showOff(true)
+            if startTrackingValue {
+                didChangeWhileTracking = true
+            }
+        }
+
+        return true
+    }
+
+    override open func endTracking(_ touch: UITouch?, with event: UIEvent?) {
+        super.endTracking(touch, with: event)
+
+        let previousValue = self.on
+
+        if didChangeWhileTracking {
+            self.setOn(currentVisualValue, animated: true)
+        } else {
+            self.setOn(!self.on, animated: true)
+        }
+
+        if previousValue != self.on {
+            self.sendActions(for: UIControlEvents.valueChanged)
+        }
+    }
+
+    override open func cancelTracking(with event: UIEvent?) {
+        super.cancelTracking(with: event)
+
+        // just animate back to the original value
+        if self.on {
+            self.showOn(true)
+        } else {
+            self.showOff(true)
+        }
+    }
+
 }
