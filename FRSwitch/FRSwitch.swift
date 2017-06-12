@@ -19,6 +19,7 @@ open class FRSwitch: UIControl {
     internal var onImageView: UIImageView!
     internal var offImageView: UIImageView!
     internal var thumbImageView: UIImageView!
+
     // private
     private var currentVisualValue: Bool = false
     private var startTrackingValue: Bool = false
@@ -27,12 +28,10 @@ open class FRSwitch: UIControl {
     private var userDidSpecifyOnThumbTintColor: Bool = false
     private var switchValue: Bool = false
 
-    // public
+    // MARK: - Public
 
-    /*
-    *   Set (without animation) whether the switch is on or off
-    */
-    @IBInspectable open var on: Bool {
+    /// Wheter the switch is on or off
+    @IBInspectable open var on: Bool { //swiftlint:disable:this identifier_name
         get {
             return switchValue
         }
@@ -42,11 +41,8 @@ open class FRSwitch: UIControl {
         }
     }
 
-    /*
-    *	Sets the background color that shows when the switch off and actively being touched.
-    *   Defaults to light gray.
-    */
-    @IBInspectable open var activeColor: UIColor = UIColor.gray {
+    /// Background color when the switch is off and being touched. Defaults to light gray.
+    @IBInspectable open var activeColor: UIColor = UIColor.lightGray {
         willSet {
             if self.on && !self.isTracking {
                 backgroundView.backgroundColor = newValue
@@ -54,11 +50,8 @@ open class FRSwitch: UIControl {
         }
     }
 
-    /*
-    *	Sets the background color when the switch is off.
-    *   Defaults to clear color.
-    */
-    @IBInspectable open var inactiveColor: UIColor = UIColor.black {
+    /// Background color when the switch is off. Defaults to clear color.
+    @IBInspectable open var inactiveColor: UIColor = UIColor.clear {
         willSet {
             if !self.on && !self.isTracking {
                 backgroundView.backgroundColor = newValue
@@ -66,10 +59,7 @@ open class FRSwitch: UIControl {
         }
     }
 
-    /*
-    *   Sets the background color that shows when the switch is on.
-    *   Defaults to green.
-    */
+    /// Background color that shows when the switch is on. Defaults to green.
     @IBInspectable open var onTintColor: UIColor = UIColor.green {
         willSet {
             if self.on && !self.isTracking {
@@ -79,10 +69,8 @@ open class FRSwitch: UIControl {
         }
     }
 
-    /*
-    *   Sets the border color that shows when the switch is off. Defaults to light gray.
-    */
-    @IBInspectable open var borderColor: UIColor = UIColor.brown {
+    /// Border color when the switch is off. Defaults to light gray.
+    @IBInspectable open var borderColor: UIColor = UIColor.lightGray {
         willSet {
             if !self.on {
                 backgroundView.layer.borderColor = newValue.cgColor
@@ -90,10 +78,8 @@ open class FRSwitch: UIControl {
         }
     }
 
-    /*
-    *	Sets the knob color. Defaults to white.
-    */
-    @IBInspectable open var thumbTintColor: UIColor = UIColor.blue {
+    /// Knob color. Defaults to light gray.
+    @IBInspectable open var thumbTintColor: UIColor = UIColor.lightGray {
         willSet {
             if !userDidSpecifyOnThumbTintColor {
                 onThumbTintColor = newValue
@@ -104,9 +90,7 @@ open class FRSwitch: UIControl {
         }
     }
 
-    /*
-    *	Sets the knob color that shows when the switch is on. Defaults to white.
-    */
+    /// Knob color when the switch is on. Defaults to white.
     @IBInspectable open var onThumbTintColor: UIColor = UIColor.white {
         willSet {
             userDidSpecifyOnThumbTintColor = true
@@ -116,10 +100,11 @@ open class FRSwitch: UIControl {
         }
     }
 
-    /*
-    *	Sets the shadow color of the knob. Defaults to gray.
-    */
-    @IBInspectable open var shadowColor: UIColor = UIColor.black {
+    /// Thumb border color.
+    @IBInspectable var thumbBorderColor: UIColor = UIColor.darkGray
+
+    /// Shadow color of the knob. Defaults to gray.
+    @IBInspectable open var thumbShadowColor: UIColor = UIColor.gray {
         willSet {
             thumbView.layer.shadowColor = newValue.cgColor
         }
@@ -213,9 +198,10 @@ open class FRSwitch: UIControl {
     *   Setup the individual elements of the switch and set default values
     */
     fileprivate func setup() {
-        self.backgroundColor = UIColor.clear
+        backgroundColor = UIColor.clear
+
         // background
-        self.backgroundView = UIView(frame: CGRect(x: 0, y: 0, width: initialFrame.width, height: initialFrame.height))
+        backgroundView = UIView(frame: CGRect(x: 0, y: 0, width: initialFrame.width, height: initialFrame.height))
         backgroundView.backgroundColor = UIColor.clear
         backgroundView.layer.cornerRadius = initialFrame.height * 0.5
         backgroundView.layer.borderColor = self.borderColor.cgColor
@@ -225,14 +211,14 @@ open class FRSwitch: UIControl {
         self.addSubview(backgroundView)
 
         // on/off images
-        self.onImageView = UIImageView(frame: CGRect(x: 0, y: 0,
+        onImageView = UIImageView(frame: CGRect(x: 0, y: 0,
             width: initialFrame.width - initialFrame.height,
             height: initialFrame.height))
         onImageView.alpha = 1.0
         onImageView.contentMode = UIViewContentMode.center
         backgroundView.addSubview(onImageView)
 
-        self.offImageView = UIImageView(frame: CGRect(x: initialFrame.height,
+        offImageView = UIImageView(frame: CGRect(x: initialFrame.height,
             y: 0,
             width: initialFrame.width - initialFrame.height,
             height: initialFrame.height))
@@ -241,7 +227,7 @@ open class FRSwitch: UIControl {
         backgroundView.addSubview(offImageView)
 
         // labels
-        self.onLabel = UILabel(frame: CGRect(x: 0, y: 0,
+        onLabel = UILabel(frame: CGRect(x: 0, y: 0,
             width: initialFrame.width - initialFrame.height,
             height: initialFrame.height))
         onLabel.textAlignment = NSTextAlignment.center
@@ -249,7 +235,7 @@ open class FRSwitch: UIControl {
         onLabel.font = UIFont.systemFont(ofSize: 12)
         backgroundView.addSubview(onLabel)
 
-        self.offLabel = UILabel(frame: CGRect(x: initialFrame.height,
+        offLabel = UILabel(frame: CGRect(x: initialFrame.height,
             y: 0,
             width: initialFrame.width - initialFrame.height,
             height: initialFrame.height))
@@ -259,26 +245,26 @@ open class FRSwitch: UIControl {
         backgroundView.addSubview(offLabel)
 
         // thumb
-        self.thumbView = UIView(frame: CGRect(x: 0.5,
+        thumbView = UIView(frame: CGRect(x: 0.5,
             y: 0.5,
             width: initialFrame.height - 2,
             height: initialFrame.height - 2))
         thumbView.backgroundColor = self.thumbTintColor
         thumbView.layer.cornerRadius = (initialFrame.height * 0.5) - 1
 
-        self.arc = CAShapeLayer()
+        arc = CAShapeLayer()
         arc!.lineWidth = 6
         arc!.path = UIBezierPath(roundedRect: thumbView.bounds, cornerRadius: thumbView.layer.cornerRadius).cgPath
         arc!.strokeStart = 0
         arc!.strokeEnd = 1
         arc!.lineCap = "round"
-        arc!.strokeColor = UIColor.red.cgColor
-        arc!.fillColor = UIColor.blue.cgColor
-        arc!.shadowColor = UIColor.black.cgColor
+        arc!.strokeColor = thumbBorderColor.cgColor
+        arc!.fillColor = thumbTintColor.cgColor
+        arc!.shadowColor = thumbShadowColor.cgColor
         arc!.frame = thumbView.frame
         thumbView.layer.addSublayer(arc!)
 
-        thumbView.layer.shadowColor = self.shadowColor.cgColor
+        thumbView.layer.shadowColor = thumbShadowColor.cgColor
         thumbView.layer.shadowRadius = 2.0
         thumbView.layer.shadowOpacity = 0.5
         thumbView.layer.shadowOffset = CGSize(width: 0, height: 3)
@@ -286,22 +272,22 @@ open class FRSwitch: UIControl {
             roundedRect: thumbView.bounds, cornerRadius: thumbView.layer.cornerRadius).cgPath
         thumbView.layer.masksToBounds = false
         thumbView.isUserInteractionEnabled = false
-        self.addSubview(thumbView)
+        addSubview(thumbView)
 
         // thumb image
-        self.thumbImageView = UIImageView(frame: CGRect(
+        thumbImageView = UIImageView(frame: CGRect(
             x: 0, y: 0, width: thumbView.frame.size.width, height: thumbView.frame.size.height))
         thumbImageView.contentMode = UIViewContentMode.center
         thumbImageView.autoresizingMask = UIViewAutoresizing.flexibleWidth
         thumbView.addSubview(thumbImageView)
 
-        self.on = false
+        on = false
     }
 
     override open func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
         super.beginTracking(touch, with: event)
 
-        startTrackingValue = self.on
+        startTrackingValue = on
         didChangeWhileTracking = false
 
         let activeKnobWidth = initialFrame.height - 2 + 5
