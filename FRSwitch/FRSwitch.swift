@@ -212,43 +212,35 @@ open class FRSwitch: UIControl {
 
         // on/off images
         onImageView = UIImageView(frame: CGRect(x: 0, y: 0,
-            width: initialFrame.width - initialFrame.height,
-            height: initialFrame.height))
+                                                width: initialFrame.width - initialFrame.height, height: initialFrame.height))
         onImageView.alpha = 1.0
         onImageView.contentMode = UIViewContentMode.center
         backgroundView.addSubview(onImageView)
 
-        offImageView = UIImageView(frame: CGRect(x: initialFrame.height,
-            y: 0,
-            width: initialFrame.width - initialFrame.height,
-            height: initialFrame.height))
+        offImageView = UIImageView(frame: CGRect(x: initialFrame.height, y: 0,
+                                   width: initialFrame.width - initialFrame.height, height: initialFrame.height))
         offImageView.alpha = 1.0
         offImageView.contentMode = UIViewContentMode.center
         backgroundView.addSubview(offImageView)
 
         // labels
         onLabel = UILabel(frame: CGRect(x: 0, y: 0,
-            width: initialFrame.width - initialFrame.height,
-            height: initialFrame.height))
+                                        width: initialFrame.width - initialFrame.height, height: initialFrame.height))
         onLabel.textAlignment = NSTextAlignment.center
         onLabel.textColor = UIColor.lightGray
         onLabel.font = UIFont.systemFont(ofSize: 12)
         backgroundView.addSubview(onLabel)
 
-        offLabel = UILabel(frame: CGRect(x: initialFrame.height,
-            y: 0,
-            width: initialFrame.width - initialFrame.height,
-            height: initialFrame.height))
+        offLabel = UILabel(frame: CGRect(x: initialFrame.height, y: 0,
+                                         width: initialFrame.width - initialFrame.height, height: initialFrame.height))
         offLabel.textAlignment = NSTextAlignment.center
         offLabel.textColor = UIColor.lightGray
         offLabel.font = UIFont.systemFont(ofSize: 12)
         backgroundView.addSubview(offLabel)
 
         // thumb
-        thumbView = UIView(frame: CGRect(x: 0.5,
-            y: 0.5,
-            width: initialFrame.height - 2,
-            height: initialFrame.height - 2))
+        thumbView = UIView(frame: CGRect(x: 0.5, y: 0.5,
+                                         width: initialFrame.height - 2, height: initialFrame.height - 2))
         thumbView.backgroundColor = self.thumbTintColor
         thumbView.layer.cornerRadius = (initialFrame.height * 0.5) - 1
 
@@ -275,8 +267,8 @@ open class FRSwitch: UIControl {
         addSubview(thumbView)
 
         // thumb image
-        thumbImageView = UIImageView(frame: CGRect(
-            x: 0, y: 0, width: thumbView.frame.size.width, height: thumbView.frame.size.height))
+        thumbImageView = UIImageView(frame: CGRect(x: 0, y: 0,
+                                     width: thumbView.frame.size.width, height: thumbView.frame.size.height))
         thumbImageView.contentMode = UIViewContentMode.center
         thumbImageView.autoresizingMask = UIViewAutoresizing.flexibleWidth
         thumbView.addSubview(thumbImageView)
