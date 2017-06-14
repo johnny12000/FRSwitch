@@ -118,8 +118,8 @@ open class FRSwitch: UIControl {
     @IBInspectable open var isRounded: Bool = true {
         willSet {
             if newValue {
-                backgroundView.layer.cornerRadius = self.frame.size.height * 0.5
-                thumbView.layer.cornerRadius = (self.frame.size.height * 0.5) - 1
+                backgroundView.layer.cornerRadius = initialFrame.size.height * 0.5
+                thumbView.layer.cornerRadius = (initialFrame.size.height * 0.5) - 1
             } else {
                 backgroundView.layer.cornerRadius = 2
                 thumbView.layer.cornerRadius = 2
@@ -197,10 +197,19 @@ open class FRSwitch: UIControl {
     /*
     *   Setup the individual elements of the switch and set default values
     */
-    fileprivate func setup() {
-        backgroundColor = UIColor.clear
+    private func setup() {
+        setupBackground()
+        setupImages()
+        setupLabels()
+        setupThumb()
+        on = false
+    }
 
-        // background
+    /**
+     Sets up the background component of the switch.
+     */
+    func setupBackground() {
+        backgroundColor = UIColor.clear
         backgroundView = UIView(frame: CGRect(x: 0, y: 0, width: initialFrame.width, height: initialFrame.height))
         backgroundView.backgroundColor = UIColor.clear
         backgroundView.layer.cornerRadius = initialFrame.height * 0.5
@@ -209,8 +218,12 @@ open class FRSwitch: UIControl {
         backgroundView.isUserInteractionEnabled = false
         backgroundView.clipsToBounds = true
         self.addSubview(backgroundView)
+    }
 
-        // on/off images
+    /**
+     Sets up the on and off images of the switch.
+     */
+    func setupImages() {
         onImageView = UIImageView(frame: CGRect(x: 0, y: 0,
                                                 width: initialFrame.width - initialFrame.height, height: initialFrame.height))
         onImageView.alpha = 1.0
@@ -218,12 +231,16 @@ open class FRSwitch: UIControl {
         backgroundView.addSubview(onImageView)
 
         offImageView = UIImageView(frame: CGRect(x: initialFrame.height, y: 0,
-                                   width: initialFrame.width - initialFrame.height, height: initialFrame.height))
+                                                 width: initialFrame.width - initialFrame.height, height: initialFrame.height))
         offImageView.alpha = 1.0
         offImageView.contentMode = UIViewContentMode.center
         backgroundView.addSubview(offImageView)
+    }
 
-        // labels
+    /**
+     Sets up the on and off labels of the switch.
+     */
+    func setupLabels() {
         onLabel = UILabel(frame: CGRect(x: 0, y: 0,
                                         width: initialFrame.width - initialFrame.height, height: initialFrame.height))
         onLabel.textAlignment = NSTextAlignment.center
@@ -237,8 +254,12 @@ open class FRSwitch: UIControl {
         offLabel.textColor = UIColor.lightGray
         offLabel.font = UIFont.systemFont(ofSize: 12)
         backgroundView.addSubview(offLabel)
+    }
 
-        // thumb
+    /**
+     Sets up the thumb component of the switch.
+     */
+    func setupThumb() {
         thumbView = UIView(frame: CGRect(x: 0.5, y: 0.5,
                                          width: initialFrame.height - 2, height: initialFrame.height - 2))
         thumbView.backgroundColor = self.thumbTintColor
@@ -268,12 +289,10 @@ open class FRSwitch: UIControl {
 
         // thumb image
         thumbImageView = UIImageView(frame: CGRect(x: 0, y: 0,
-                                     width: thumbView.frame.size.width, height: thumbView.frame.size.height))
+                                                   width: thumbView.frame.size.width, height: thumbView.frame.size.height))
         thumbImageView.contentMode = UIViewContentMode.center
         thumbImageView.autoresizingMask = UIViewAutoresizing.flexibleWidth
         thumbView.addSubview(thumbImageView)
-
-        on = false
     }
 
     override open func layoutSubviews() {
@@ -285,141 +304,49 @@ open class FRSwitch: UIControl {
     */
     open func setOn(_ isOn: Bool, animated: Bool) {
         switchValue = isOn
+        self.setValueLayout(value: on, animated)
+    }
 
-        if on {
-            self.showOn(animated)
-        } else {
-            self.showOff(animated)
+    /**
+     Flag specifying wheter the swithc i on of off
+     */
+    var isOn: Bool {
+        return on
+    }
+
+    func setValueLayout(value: Bool, _ animated: Bool) {
+        let knobWidth: CGFloat = initialFrame.height - 2
+
+        let frameX = value ? self.initialFrame.width - (knobWidth + 1) : 1
+        let frameY = self.thumbView.frame.origin.y
+        let frameWidth = knobWidth
+        let frameHeight = self.thumbView.frame.size.height
+
+        let funkyBlock = {
+                self.thumbView.frame = CGRect(x: frameX, y: frameY, width: frameWidth, height: frameHeight)
         }
-    }
-
-    /*
-    *   Detects whether the switch is on or off
-    *
-    *	@return	BOOL YES if switch is on. NO if switch is off
-    */
-    open func isOn() -> Bool {
-        return self.on
-    }
-
-    /*
-    *   update the looks of the switch to be in the on position
-    *   optionally make it animated
-    */
-    fileprivate func showOn(_ animated: Bool) {
-        let normalKnobWidth: CGFloat = initialFrame.height - 2
-        let activeKnobWidth = normalKnobWidth + 5
-        if animated {
-            isAnimating = true
-            UIView.animate(
-                withDuration: 0.3, delay: 0.0,
-                options: [UIViewAnimationOptions.curveEaseOut, UIViewAnimationOptions.beginFromCurrentState],
-                animations: {
-                if self.isTracking {
-                    self.thumbView.frame = CGRect(x: self.initialFrame.width - (activeKnobWidth + 1),
-                        y: self.thumbView.frame.origin.y,
-                        width: activeKnobWidth,
-                        height: self.thumbView.frame.size.height)
-                } else {
-                    self.thumbView.frame = CGRect(x: self.initialFrame.width - (normalKnobWidth + 1),
-                        y: self.thumbView.frame.origin.y,
-                        width: normalKnobWidth,
-                        height: self.thumbView.frame.size.height)
-                }
-                self.backgroundView.backgroundColor = self.onTintColor
-                self.backgroundView.layer.borderColor = self.onTintColor.cgColor
-                self.thumbView.backgroundColor = self.onThumbTintColor
-                self.onImageView.alpha = 1.0
-                self.offImageView.alpha = 0
-                self.onLabel.alpha = 1.0
-                self.offLabel.alpha = 0
-                }, completion: { _ in
-                    self.isAnimating = false
-            })
-        } else {
-            if self.isTracking {
-                thumbView.frame = CGRect(x: initialFrame.width - (activeKnobWidth + 1),
-                    y: thumbView.frame.origin.y,
-                    width: activeKnobWidth,
-                    height: thumbView.frame.size.height)
-            } else {
-                thumbView.frame = CGRect(x: initialFrame.width - (normalKnobWidth + 1),
-                    y: thumbView.frame.origin.y,
-                    width: normalKnobWidth,
-                    height: thumbView.frame.size.height)
-            }
-
-            backgroundView.backgroundColor = self.onTintColor
-            backgroundView.layer.borderColor = self.onTintColor.cgColor
-            thumbView.backgroundColor = self.onThumbTintColor
-            onImageView.alpha = 1.0
-            offImageView.alpha = 0
-            onLabel.alpha = 1.0
-            offLabel.alpha = 0
-        }
-
-        currentVisualValue = true
-    }
-
-    /*
-    *   update the looks of the switch to be in the off position
-    *   optionally make it animated
-    */
-    fileprivate func showOff(_ animated: Bool) {
-        let normalKnobWidth: CGFloat = initialFrame.height - 2
-        let activeKnobWidth = normalKnobWidth + 5
 
         if animated {
             isAnimating = true
-            UIView.animate(withDuration: 0.3, delay: 0.0,
-                           options: [UIViewAnimationOptions.curveEaseOut, UIViewAnimationOptions.beginFromCurrentState],
+            UIView.animate(withDuration: 0.3, delay: 0.0, options: [.curveEaseOut, .beginFromCurrentState],
                            animations: {
-                if self.isTracking {
-                    self.thumbView.frame = CGRect(x: 1,
-                        y: self.thumbView.frame.origin.y,
-                        width: activeKnobWidth,
-                        height: self.thumbView.frame.size.height)
-                    self.backgroundView.backgroundColor = self.activeColor
-                } else {
-                    self.thumbView.frame = CGRect(x: 1,
-                        y: self.thumbView.frame.origin.y,
-                        width: normalKnobWidth,
-                        height: self.thumbView.frame.size.height)
-                    self.backgroundView.backgroundColor = self.inactiveColor
-                }
-
-                self.backgroundView.layer.borderColor = self.borderColor.cgColor
-                self.thumbView.backgroundColor = self.thumbTintColor
-                self.onImageView.alpha = 0
-                self.offImageView.alpha = 1.0
-                self.onLabel.alpha = 0
-                self.offLabel.alpha = 1.0
-                }, completion: { _ in
-                    self.isAnimating = false
-            })
+                                funkyBlock()
+                            }, completion: { _ in
+                                self.isAnimating = false
+                            })
         } else {
-            if self.isTracking {
-                thumbView.frame = CGRect(x: 1,
-                    y: thumbView.frame.origin.y,
-                    width: activeKnobWidth,
-                    height: thumbView.frame.size.height)
-                backgroundView.backgroundColor = self.activeColor
-            } else {
-                thumbView.frame = CGRect(x: 1,
-                    y: thumbView.frame.origin.y,
-                    width: normalKnobWidth,
-                    height: thumbView.frame.size.height)
-                backgroundView.backgroundColor = self.inactiveColor
-            }
-            backgroundView.layer.borderColor = self.borderColor.cgColor
-            thumbView.backgroundColor = self.thumbTintColor
-            onImageView.alpha = 0
-            offImageView.alpha = 1.0
-            onLabel.alpha = 0
-            offLabel.alpha = 1.0
+            funkyBlock()
         }
 
-        currentVisualValue = false
+        backgroundView.backgroundColor = value ? onTintColor : onThumbTintColor
+        backgroundView.layer.borderColor = value ? onTintColor.cgColor : borderColor.cgColor
+        thumbView.backgroundColor = value ? onThumbTintColor : thumbTintColor
+        onImageView.alpha = value ? 1.0 : 0.0
+        offImageView.alpha = value ? 0.0 : 1.0
+        onLabel.alpha = value ? 1.0 : 0.0
+        offLabel.alpha = value ? 0.0 : 1.0
+
+        currentVisualValue = value
     }
 
     override open var intrinsicContentSize: CGSize {
@@ -471,12 +398,12 @@ open class FRSwitch: UIControl {
         // update the switch to the correct visuals depending on if
         // they moved their touch to the right or left side of the switch
         if lastPoint.x > initialFrame.width * 0.5 {
-            self.showOn(true)
+            setValueLayout(value: true, true)
             if !startTrackingValue {
                 didChangeWhileTracking = true
             }
         } else {
-            self.showOff(true)
+            setValueLayout(value: false, true)
             if startTrackingValue {
                 didChangeWhileTracking = true
             }
@@ -505,11 +432,7 @@ open class FRSwitch: UIControl {
         super.cancelTracking(with: event)
 
         // just animate back to the original value
-        if self.on {
-            self.showOn(true)
-        } else {
-            self.showOff(true)
-        }
+        setValueLayout(value: on, true)
     }
 
 }
