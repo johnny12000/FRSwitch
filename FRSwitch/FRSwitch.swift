@@ -22,7 +22,6 @@ open class FRSwitch: UIControl {
 
     // private
     private var currentVisualValue: Bool = false
-    private var startTrackingValue: Bool = false
     private var didChangeWhileTracking: Bool = false
     private var isAnimating: Bool = false
     private var userDidSpecifyOnThumbTintColor: Bool = false
@@ -356,37 +355,7 @@ open class FRSwitch: UIControl {
     // MARK: - User gestures
 
     override open func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
-        super.beginTracking(touch, with: event)
-
-        startTrackingValue = on
-        didChangeWhileTracking = false
-
-        let activeKnobWidth = initialFrame.height - 2 + 5
-        isAnimating = true
-
-        UIView.animate(
-            withDuration: 0.3, delay: 0.0,
-            options: [UIViewAnimationOptions.curveEaseOut, UIViewAnimationOptions.beginFromCurrentState],
-            animations: {
-                if self.on {
-                    self.thumbView.frame = CGRect(x: self.initialFrame.width - (activeKnobWidth + 1),
-                                                  y: self.thumbView.frame.origin.y,
-                                                  width: activeKnobWidth,
-                                                  height: self.thumbView.frame.size.height)
-                    self.backgroundView.backgroundColor = self.onTintColor
-                    self.thumbView.backgroundColor = self.onThumbTintColor
-                } else {
-                    self.thumbView.frame = CGRect(x: self.thumbView.frame.origin.x, y: self.thumbView.frame.origin.y,
-                                                  width: activeKnobWidth,
-                                                  height: self.thumbView.frame.size.height)
-                    self.backgroundView.backgroundColor = self.activeColor
-                    self.thumbView.backgroundColor = self.thumbTintColor
-                }
-        }, completion: { _ in
-            self.isAnimating = false
-        })
-
-        return true
+        return super.beginTracking(touch, with: event)
     }
 
     override open func continueTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
@@ -397,18 +366,9 @@ open class FRSwitch: UIControl {
 
         // update the switch to the correct visuals depending on if
         // they moved their touch to the right or left side of the switch
-        if lastPoint.x > initialFrame.width * 0.5 {
-            setValueLayout(value: true, true)
-            if !startTrackingValue {
-                didChangeWhileTracking = true
-            }
-        } else {
-            setValueLayout(value: false, true)
-            if startTrackingValue {
-                didChangeWhileTracking = true
-            }
-        }
-
+        let isMovedToOn = lastPoint.x > initialFrame.width * 0.5
+        setValueLayout(value: isMovedToOn, true)
+        didChangeWhileTracking = (on && !isMovedToOn) || (!on && isMovedToOn)
         return true
     }
 
