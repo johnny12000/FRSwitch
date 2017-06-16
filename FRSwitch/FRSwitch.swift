@@ -26,6 +26,7 @@ open class FRSwitch: UIControl {
     private var isAnimating: Bool = false
     private var userDidSpecifyOnThumbTintColor: Bool = false
     private var switchValue: Bool = false
+    private var tapGesture: UITapGestureRecognizer!
 
     // MARK: - Public
 
@@ -191,6 +192,10 @@ open class FRSwitch: UIControl {
         self.setup()
     }
 
+    deinit {
+        removeGestureRecognizer(tapGesture)
+    }
+
     // MARK: - Utilities
 
     /*
@@ -202,6 +207,8 @@ open class FRSwitch: UIControl {
         setupLabels()
         setupThumb()
         on = false
+        tapGesture = UITapGestureRecognizer(target: self, action: #selector(switchTapped(_:)))
+        addGestureRecognizer(tapGesture)
     }
 
     /**
@@ -393,6 +400,10 @@ open class FRSwitch: UIControl {
 
         // just animate back to the original value
         setValueLayout(value: on, true)
+    }
+
+    func switchTapped(_ sender: Any) {
+        setOn(!on, animated: true)
     }
 
 }
