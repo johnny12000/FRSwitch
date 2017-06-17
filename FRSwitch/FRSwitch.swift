@@ -22,7 +22,6 @@ open class FRSwitch: UIControl {
 
     // private
     private var currentVisualValue: Bool = false
-    private var didChangeWhileTracking: Bool = false
     private var isAnimating: Bool = false
     private var userDidSpecifyOnThumbTintColor: Bool = false
     private var switchValue: Bool = false
@@ -374,31 +373,22 @@ open class FRSwitch: UIControl {
         // update the switch to the correct visuals depending on if
         // they moved their touch to the right or left side of the switch
         let isMovedToOn = lastPoint.x > initialFrame.width * 0.5
-        setValueLayout(value: isMovedToOn, true)
-        didChangeWhileTracking = (on && !isMovedToOn) || (!on && isMovedToOn)
+        if (currentVisualValue && !isMovedToOn) || (!currentVisualValue && isMovedToOn) {
+            setValueLayout(value: isMovedToOn, true)
+        }
         return true
     }
 
     override open func endTracking(_ touch: UITouch?, with event: UIEvent?) {
         super.endTracking(touch, with: event)
-
-        let previousValue = self.on
-
-        if didChangeWhileTracking {
-            self.setOn(currentVisualValue, animated: true)
-        } else {
-            self.setOn(!self.on, animated: true)
-        }
-
-        if previousValue != self.on {
-            self.sendActions(for: UIControlEvents.valueChanged)
+        if currentVisualValue != on {
+            setOn(!self.on, animated: true)
+            sendActions(for: UIControlEvents.valueChanged)
         }
     }
 
     override open func cancelTracking(with event: UIEvent?) {
         super.cancelTracking(with: event)
-
-        // just animate back to the original value
         setValueLayout(value: on, true)
     }
 
