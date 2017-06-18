@@ -10,22 +10,19 @@ import QuartzCore
 
 @IBDesignable
 open class FRSwitch: UIControl {
-    let initialFrame = CGRect(x: 0, y: 0, width: 61, height: 22)
-    var arc: CAShapeLayer?
-
-    // internal
     internal var backgroundView: UIView!
     internal var thumbView: UIView!
     internal var onImageView: UIImageView!
     internal var offImageView: UIImageView!
     internal var thumbImageView: UIImageView!
 
-    // private
     private var currentVisualValue: Bool = false
     private var isAnimating: Bool = false
     private var userDidSpecifyOnThumbTintColor: Bool = false
     private var switchValue: Bool = false
     private var tapGesture: UITapGestureRecognizer!
+    private let initialFrame = CGRect(x: 0, y: 0, width: 61, height: 22)
+    private var arc: CAShapeLayer?
 
     // MARK: - Public
 
@@ -230,13 +227,15 @@ open class FRSwitch: UIControl {
      */
     func setupImages() {
         onImageView = UIImageView(frame: CGRect(x: 0, y: 0,
-                                                width: initialFrame.width - initialFrame.height, height: initialFrame.height))
+                                                width: initialFrame.width - initialFrame.height,
+                                                height: initialFrame.height))
         onImageView.alpha = 1.0
         onImageView.contentMode = UIViewContentMode.center
         backgroundView.addSubview(onImageView)
 
         offImageView = UIImageView(frame: CGRect(x: initialFrame.height, y: 0,
-                                                 width: initialFrame.width - initialFrame.height, height: initialFrame.height))
+                                                 width: initialFrame.width - initialFrame.height,
+                                                 height: initialFrame.height))
         offImageView.alpha = 1.0
         offImageView.contentMode = UIViewContentMode.center
         backgroundView.addSubview(offImageView)
@@ -294,7 +293,8 @@ open class FRSwitch: UIControl {
 
         // thumb image
         thumbImageView = UIImageView(frame: CGRect(x: 0, y: 0,
-                                                   width: thumbView.frame.size.width, height: thumbView.frame.size.height))
+                                                   width: thumbView.frame.size.width,
+                                                   height: thumbView.frame.size.height))
         thumbImageView.contentMode = UIViewContentMode.center
         thumbImageView.autoresizingMask = UIViewAutoresizing.flexibleWidth
         thumbView.addSubview(thumbImageView)
