@@ -17,7 +17,6 @@ open class FRSwitch: UIControl {
     internal var thumbImageView: UIImageView!
 
     private var currentVisualValue: Bool = false
-    private var isAnimating: Bool = false
     private var userDidSpecifyOnThumbTintColor: Bool = false
     private var switchValue: Bool = false
     private var tapGesture: UITapGestureRecognizer!
@@ -332,12 +331,9 @@ open class FRSwitch: UIControl {
         }
 
         if animated {
-            isAnimating = true
             UIView.animate(withDuration: 0.3, delay: 0.0, options: [.curveEaseOut, .beginFromCurrentState],
                            animations: {
                                 funkyBlock()
-                            }, completion: { _ in
-                                self.isAnimating = false
                             })
         } else {
             funkyBlock()
