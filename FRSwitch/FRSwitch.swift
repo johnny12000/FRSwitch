@@ -312,7 +312,7 @@ open class FRSwitch: UIControl {
     }
 
     /**
-     Flag specifying wheter the swithc i on of off
+     Flag specifying wheter the switch is on or off
      */
     var isOn: Bool {
         return on
