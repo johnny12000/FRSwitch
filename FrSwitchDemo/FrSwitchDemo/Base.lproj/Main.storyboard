@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -26,12 +26,16 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="97" id="9Su-87-C3N"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="97" id="Gp5-2B-vdM"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="34" id="KoJ-8t-NQt"/>
                                     <constraint firstAttribute="height" constant="34" id="TsY-fI-Jyl"/>
                                 </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="dNU-C1-msn" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="64z-gi-RY3"/>
+                            <constraint firstItem="dNU-C1-msn" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="NIe-zB-2WJ"/>
                             <constraint firstItem="dNU-C1-msn" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="c6F-AX-qqd"/>
                             <constraint firstItem="dNU-C1-msn" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="rJl-08-nnR"/>
                         </constraints>

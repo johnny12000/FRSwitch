@@ -105,11 +105,9 @@ open class FRSwitch: UIControl {
         }
     }
 
-    /*
-    *	Sets whether or not the switch edges are rounded.
-    *   Set to NO to get a stylish square switch.
-    *   Defaults to YES.
-    */
+    /// Sets whether or not the switch edges are rounded.
+    /// Set to NO to get a stylish square switch.
+    /// Defaults to YES.
     @IBInspectable open var isRounded: Bool = true {
         willSet {
             if newValue {
@@ -125,47 +123,37 @@ open class FRSwitch: UIControl {
         }
     }
 
-    /*
-    *   Sets the image that shows on the switch thumb.
-    */
+    /// Sets the image that shows on the switch thumb.
     @IBInspectable open var thumbImage: UIImage! {
         willSet {
             thumbImageView.image = newValue
         }
     }
 
-    /*
-    *   Sets the image that shows when the switch is on.
-    *   The image is centered in the area not covered by the knob.
-    *   Make sure to size your images appropriately.
-    */
+    /// Sets the image that shows when the switch is on.
+    /// The image is centered in the area not covered by the knob.
+    /// Make sure to size your images appropriately.
     @IBInspectable open var onImage: UIImage! {
         willSet {
             onImageView.image = newValue
         }
     }
 
-    /*
-    *	Sets the image that shows when the switch is off.
-    *   The image is centered in the area not covered by the knob.
-    *   Make sure to size your images appropriately.
-    */
+    /// Sets the image that shows when the switch is off.
+    /// The image is centered in the area not covered by the knob.
+    /// Make sure to size your images appropriately.
     @IBInspectable open var offImage: UIImage! {
         willSet {
             offImageView.image = newValue
         }
     }
 
-    /*
-    *	Sets the text that shows when the switch is on.
-    *   The text is centered in the area not covered by the knob.
-    */
+    /// Sets the text that shows when the switch is on.
+    /// The text is centered in the area not covered by the knob.
     open var onLabel: UILabel!
 
-    /*
-    *	Sets the text that shows when the switch is off.
-    *   The text is centered in the area not covered by the knob.
-    */
+    /// Sets the text that shows when the switch is off.
+    /// The text is centered in the area not covered by the knob.
     open var offLabel: UILabel!
 
     // MARK: - Initialization
@@ -193,9 +181,7 @@ open class FRSwitch: UIControl {
 
     // MARK: - Utilities
 
-    /*
-    *   Setup the individual elements of the switch and set default values
-    */
+    /// Setup the individual elements of the switch and set default values
     private func setup() {
         setupBackground()
         setupImages()
@@ -206,9 +192,7 @@ open class FRSwitch: UIControl {
         addGestureRecognizer(tapGesture)
     }
 
-    /**
-     Sets up the background component of the switch.
-     */
+    /// Sets up the background component of the switch.
     func setupBackground() {
         backgroundColor = UIColor.clear
         backgroundView = UIView(frame: CGRect(x: 0, y: 0, width: initialFrame.width, height: initialFrame.height))
@@ -221,9 +205,7 @@ open class FRSwitch: UIControl {
         self.addSubview(backgroundView)
     }
 
-    /**
-     Sets up the on and off images of the switch.
-     */
+    /// Sets up the on and off images of the switch.
     func setupImages() {
         onImageView = UIImageView(frame: CGRect(x: 0, y: 0,
                                                 width: initialFrame.width - initialFrame.height,
@@ -240,9 +222,7 @@ open class FRSwitch: UIControl {
         backgroundView.addSubview(offImageView)
     }
 
-    /**
-     Sets up the on and off labels of the switch.
-     */
+    /// Sets up the on and off labels of the switch.
     func setupLabels() {
         onLabel = UILabel(frame: CGRect(x: 0, y: 0,
                                         width: initialFrame.width - initialFrame.height, height: initialFrame.height))
@@ -259,9 +239,7 @@ open class FRSwitch: UIControl {
         backgroundView.addSubview(offLabel)
     }
 
-    /**
-     Sets up the thumb component of the switch.
-     */
+    /// Sets up the thumb component of the switch.
     func setupThumb() {
         thumbView = UIView(frame: CGRect(x: 0.5, y: 0.5,
                                          width: initialFrame.height - 2, height: initialFrame.height - 2))
@@ -303,17 +281,13 @@ open class FRSwitch: UIControl {
         super.layoutSubviews()
     }
 
-    /*
-    *   Set the state of the switch to on or off, optionally animating the transition.
-    */
+    /// Set the state of the switch to on or off, optionally animating the transition.
     open func setOn(_ isOn: Bool, animated: Bool) {
         switchValue = isOn
         self.setValueLayout(value: on, animated)
     }
 
-    /**
-     Flag specifying wheter the switch is on or off
-     */
+    /// Flag specifying wheter the switch is on or off
     var isOn: Bool {
         return on
     }
