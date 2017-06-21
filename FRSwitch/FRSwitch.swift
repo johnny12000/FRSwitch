@@ -148,6 +148,21 @@ open class FRSwitch: UIControl {
         }
     }
 
+    /// Width of the thumb border
+    @IBInspectable open var thumbBorderWidth: CGFloat = 6 {
+        didSet {
+            let arc = thumbView.layer.sublayers?.filter({ $0 is CAShapeLayer}).first
+            (arc as? CAShapeLayer)?.lineWidth = thumbBorderWidth
+        }
+    }
+
+    /// Width of the switch background
+    @IBInspectable open var backgroundBorderWidth: CGFloat = 5 {
+        didSet {
+            backgroundView.layer.borderWidth = backgroundBorderWidth
+        }
+    }
+
     /// Sets the text that shows when the switch is on.
     /// The text is centered in the area not covered by the knob.
     open var onLabel: UILabel!
@@ -198,8 +213,8 @@ open class FRSwitch: UIControl {
         backgroundView = UIView(frame: CGRect(x: 0, y: 0, width: initialFrame.width, height: initialFrame.height))
         backgroundView.backgroundColor = UIColor.clear
         backgroundView.layer.cornerRadius = initialFrame.height * 0.5
-        backgroundView.layer.borderColor = self.borderColor.cgColor
-        backgroundView.layer.borderWidth = 5.0
+        backgroundView.layer.borderColor = borderColor.cgColor
+        backgroundView.layer.borderWidth = backgroundBorderWidth
         backgroundView.isUserInteractionEnabled = false
         backgroundView.clipsToBounds = true
         self.addSubview(backgroundView)
@@ -247,7 +262,7 @@ open class FRSwitch: UIControl {
         thumbView.layer.cornerRadius = (initialFrame.height * 0.5) - 1
 
         arc = CAShapeLayer()
-        arc!.lineWidth = 6
+        arc!.lineWidth = thumbBorderWidth
         arc!.path = UIBezierPath(roundedRect: thumbView.bounds, cornerRadius: thumbView.layer.cornerRadius).cgPath
         arc!.strokeStart = 0
         arc!.strokeEnd = 1
