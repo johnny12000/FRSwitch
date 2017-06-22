@@ -36,40 +36,31 @@ open class FRSwitch: UIControl {
         }
     }
 
-    /// Background color when the switch is off and being touched. Defaults to light gray.
-    @IBInspectable open var activeColor: UIColor = UIColor.lightGray {
-        willSet {
-            if self.on && !self.isTracking {
-                backgroundView.backgroundColor = newValue
-            }
+    /// Background border color when the switch is on. Defaults to light gray.
+    @IBInspectable open var backgroundBorderOnColor: UIColor = UIColor.lightGray {
+        didSet {
+            setupBackground()
         }
     }
 
-    /// Background color when the switch is off. Defaults to clear color.
-    @IBInspectable open var inactiveColor: UIColor = UIColor.clear {
-        willSet {
-            if !self.on && !self.isTracking {
-                backgroundView.backgroundColor = newValue
-            }
+    /// Background border color when the switch is off. Defaults to clear color.
+    @IBInspectable open var backgroundBorderOffColor: UIColor = UIColor.clear {
+        didSet {
+            setupBackground()
         }
     }
 
-    /// Background color that shows when the switch is on. Defaults to green.
-    @IBInspectable open var onTintColor: UIColor = UIColor.green {
-        willSet {
-            if self.on && !self.isTracking {
-                backgroundView.backgroundColor = newValue
-                backgroundView.layer.borderColor = newValue.cgColor
-            }
+    /// Background color when the switch is on. Defaults to green.
+    @IBInspectable open var backgroundOnColor: UIColor = UIColor.green {
+        didSet {
+            setupBackground()
         }
     }
 
     /// Border color when the switch is off. Defaults to light gray.
-    @IBInspectable open var borderColor: UIColor = UIColor.lightGray {
-        willSet {
-            if !self.on {
-                backgroundView.layer.borderColor = newValue.cgColor
-            }
+    @IBInspectable open var backgroundOffColor: UIColor = UIColor.lightGray {
+        didSet {
+            setupBackground()
         }
     }
 
@@ -210,14 +201,17 @@ open class FRSwitch: UIControl {
     /// Sets up the background component of the switch.
     func setupBackground() {
         backgroundColor = UIColor.clear
-        backgroundView = UIView(frame: CGRect(x: 0, y: 0, width: initialFrame.width, height: initialFrame.height))
+        if backgroundView == nil {
+            backgroundView = UIView(frame: initialFrame)
+            self.addSubview(backgroundView)
+        }
         backgroundView.backgroundColor = UIColor.clear
-        backgroundView.layer.cornerRadius = initialFrame.height * 0.5
-        backgroundView.layer.borderColor = borderColor.cgColor
+        backgroundView.layer.cornerRadius = isRounded ? initialFrame.height * 0.5 : 2.0
         backgroundView.layer.borderWidth = backgroundBorderWidth
+        backgroundView.backgroundColor = isOn ? backgroundOnColor : backgroundOffColor
+        backgroundView.layer.borderColor = isOn ? backgroundBorderOnColor.cgColor : backgroundBorderOffColor.cgColor
         backgroundView.isUserInteractionEnabled = false
         backgroundView.clipsToBounds = true
-        self.addSubview(backgroundView)
     }
 
     /// Sets up the on and off images of the switch.
@@ -328,8 +322,7 @@ open class FRSwitch: UIControl {
             funkyBlock()
         }
 
-        backgroundView.backgroundColor = value ? onTintColor : onThumbTintColor
-        backgroundView.layer.borderColor = value ? onTintColor.cgColor : borderColor.cgColor
+        setupBackground()
         thumbView.backgroundColor = value ? onThumbTintColor : thumbTintColor
         onImageView.alpha = value ? 1.0 : 0.0
         offImageView.alpha = value ? 0.0 : 1.0
