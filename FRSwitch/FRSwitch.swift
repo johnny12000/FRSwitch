@@ -65,34 +65,37 @@ open class FRSwitch: UIControl {
     }
 
     /// Knob color. Defaults to light gray.
-    @IBInspectable open var thumbTintColor: UIColor = UIColor.lightGray {
-        willSet {
-            if !userDidSpecifyOnThumbTintColor {
-                onThumbTintColor = newValue
-            }
-            if (!userDidSpecifyOnThumbTintColor || !self.on) && !self.isTracking {
-                thumbView.backgroundColor = newValue
-            }
+    @IBInspectable open var thumbOffColor: UIColor = UIColor.lightGray {
+        didSet {
+            setupThumb()
         }
     }
 
     /// Knob color when the switch is on. Defaults to white.
-    @IBInspectable open var onThumbTintColor: UIColor = UIColor.white {
-        willSet {
-            userDidSpecifyOnThumbTintColor = true
-            if self.on && !self.isTracking {
-                thumbView.backgroundColor = newValue
-            }
+    @IBInspectable open var thumbOnColor: UIColor = UIColor.white {
+        didSet {
+            setupThumb()
         }
     }
 
-    /// Thumb border color.
-    @IBInspectable var thumbBorderColor: UIColor = UIColor.darkGray
+    /// Thumb border color when the switch is on. Defaults to dark grey.
+    @IBInspectable var thumbBorderOnColor: UIColor = UIColor.darkGray {
+        didSet {
+            setupThumb()
+        }
+    }
+
+    /// Thumb border color when the switch is off. Defaults to dark grey.
+    @IBInspectable var thumbBorderOffColor: UIColor = UIColor.darkGray {
+        didSet {
+            setupThumb()
+        }
+    }
 
     /// Shadow color of the knob. Defaults to gray.
     @IBInspectable open var thumbShadowColor: UIColor = UIColor.gray {
         willSet {
-            thumbView.layer.shadowColor = newValue.cgColor
+            setupThumb()
         }
     }
 
@@ -199,7 +202,7 @@ open class FRSwitch: UIControl {
     }
 
     /// Sets up the background component of the switch.
-    func setupBackground() {
+    private func setupBackground() {
         backgroundColor = UIColor.clear
         if backgroundView == nil {
             backgroundView = UIView(frame: initialFrame)
@@ -215,7 +218,7 @@ open class FRSwitch: UIControl {
     }
 
     /// Sets up the on and off images of the switch.
-    func setupImages() {
+    private func setupImages() {
         onImageView = UIImageView(frame: CGRect(x: 0, y: 0,
                                                 width: initialFrame.width - initialFrame.height,
                                                 height: initialFrame.height))
@@ -232,7 +235,7 @@ open class FRSwitch: UIControl {
     }
 
     /// Sets up the on and off labels of the switch.
-    func setupLabels() {
+    private func setupLabels() {
         onLabel = UILabel(frame: CGRect(x: 0, y: 0,
                                         width: initialFrame.width - initialFrame.height, height: initialFrame.height))
         onLabel.textAlignment = NSTextAlignment.center
@@ -249,24 +252,14 @@ open class FRSwitch: UIControl {
     }
 
     /// Sets up the thumb component of the switch.
-    func setupThumb() {
-        thumbView = UIView(frame: CGRect(x: 0.5, y: 0.5,
-                                         width: initialFrame.height - 2, height: initialFrame.height - 2))
-        thumbView.backgroundColor = self.thumbTintColor
-        thumbView.layer.cornerRadius = (initialFrame.height * 0.5) - 1
-
-        arc = CAShapeLayer()
-        arc!.lineWidth = thumbBorderWidth
-        arc!.path = UIBezierPath(roundedRect: thumbView.bounds, cornerRadius: thumbView.layer.cornerRadius).cgPath
-        arc!.strokeStart = 0
-        arc!.strokeEnd = 1
-        arc!.lineCap = "round"
-        arc!.strokeColor = thumbBorderColor.cgColor
-        arc!.fillColor = thumbTintColor.cgColor
-        arc!.shadowColor = thumbShadowColor.cgColor
-        arc!.frame = thumbView.frame
-        thumbView.layer.addSublayer(arc!)
-
+    private func setupThumb() {
+        if thumbView == nil {
+            thumbView = UIView(frame: CGRect(x: 0.5, y: 0.5,
+                                             width: initialFrame.height - 2, height: initialFrame.height - 2))
+            addSubview(thumbView)
+        }
+        thumbView.backgroundColor = UIColor.blue
+        thumbView.layer.cornerRadius = isRounded ? (initialFrame.height * 0.5) - 1 : 2
         thumbView.layer.shadowColor = thumbShadowColor.cgColor
         thumbView.layer.shadowRadius = 2.0
         thumbView.layer.shadowOpacity = 0.5
@@ -275,15 +268,31 @@ open class FRSwitch: UIControl {
             roundedRect: thumbView.bounds, cornerRadius: thumbView.layer.cornerRadius).cgPath
         thumbView.layer.masksToBounds = false
         thumbView.isUserInteractionEnabled = false
-        addSubview(thumbView)
 
-        // thumb image
-        thumbImageView = UIImageView(frame: CGRect(x: 0, y: 0,
-                                                   width: thumbView.frame.size.width,
-                                                   height: thumbView.frame.size.height))
+        if arc == nil {
+            arc = CAShapeLayer()
+            thumbView.layer.addSublayer(arc!)
+            arc!.path = UIBezierPath(
+                roundedRect: CGRect(x: 0, y: 0, width: initialFrame.height, height: initialFrame.height),
+                cornerRadius: thumbView.layer.cornerRadius).cgPath
+        }
+        arc!.lineWidth = thumbBorderWidth
+        arc!.strokeStart = 0
+        arc!.strokeEnd = 1
+        arc!.lineCap = "round"
+        arc!.strokeColor = isOn ? thumbBorderOnColor.cgColor : thumbBorderOffColor.cgColor
+        arc!.fillColor = isOn ? thumbOnColor.cgColor : thumbOffColor.cgColor
+        arc!.shadowColor = thumbShadowColor.cgColor
+        arc!.frame = CGRect(x: 0, y: 0, width: initialFrame.height, height: initialFrame.height)
+
+        if thumbImageView == nil {
+            thumbImageView = UIImageView(frame: CGRect(x: 0, y: 0,
+                                                       width: thumbView.frame.size.width,
+                                                       height: thumbView.frame.size.height))
+            thumbView.addSubview(thumbImageView)
+        }
         thumbImageView.contentMode = UIViewContentMode.center
         thumbImageView.autoresizingMask = UIViewAutoresizing.flexibleWidth
-        thumbView.addSubview(thumbImageView)
     }
 
     override open func layoutSubviews() {
@@ -302,15 +311,15 @@ open class FRSwitch: UIControl {
     }
 
     func setValueLayout(value: Bool, _ animated: Bool) {
-        let knobWidth: CGFloat = initialFrame.height - 2
+        let knobWidth: CGFloat = initialFrame.height
 
-        let frameX = value ? self.initialFrame.width - (knobWidth + 1) : 1
+        let frameX = value ? self.initialFrame.width - knobWidth : 1
         let frameY = self.thumbView.frame.origin.y
         let frameWidth = knobWidth
         let frameHeight = self.thumbView.frame.size.height
 
         let funkyBlock = {
-                self.thumbView.frame = CGRect(x: frameX, y: frameY, width: frameWidth, height: frameHeight)
+            self.thumbView.frame = CGRect(x: frameX, y: frameY, width: frameWidth, height: frameHeight)
         }
 
         if animated {
@@ -323,7 +332,7 @@ open class FRSwitch: UIControl {
         }
 
         setupBackground()
-        thumbView.backgroundColor = value ? onThumbTintColor : thumbTintColor
+        setupThumb()
         onImageView.alpha = value ? 1.0 : 0.0
         offImageView.alpha = value ? 0.0 : 1.0
         onLabel.alpha = value ? 1.0 : 0.0
