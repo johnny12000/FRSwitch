@@ -94,7 +94,7 @@ open class FRSwitch: UIControl {
 
     /// Shadow color of the knob. Defaults to gray.
     @IBInspectable open var thumbShadowColor: UIColor = UIColor.gray {
-        willSet {
+        didSet {
             setupThumb()
         }
     }
@@ -103,17 +103,9 @@ open class FRSwitch: UIControl {
     /// Set to NO to get a stylish square switch.
     /// Defaults to YES.
     @IBInspectable open var isRounded: Bool = true {
-        willSet {
-            if newValue {
-                backgroundView.layer.cornerRadius = initialFrame.size.height * 0.5
-                thumbView.layer.cornerRadius = (initialFrame.size.height * 0.5) - 1
-            } else {
-                backgroundView.layer.cornerRadius = 2
-                thumbView.layer.cornerRadius = 2
-            }
-
-            thumbView.layer.shadowPath = UIBezierPath(
-                roundedRect: thumbView.bounds, cornerRadius: thumbView.layer.cornerRadius).cgPath
+        didSet {
+            setupBackground()
+            setupThumb()
         }
     }
 
@@ -258,7 +250,6 @@ open class FRSwitch: UIControl {
                                              width: initialFrame.height - 2, height: initialFrame.height - 2))
             addSubview(thumbView)
         }
-        thumbView.backgroundColor = UIColor.blue
         thumbView.layer.cornerRadius = isRounded ? (initialFrame.height * 0.5) - 1 : 2
         thumbView.layer.shadowColor = thumbShadowColor.cgColor
         thumbView.layer.shadowRadius = 2.0
@@ -272,10 +263,10 @@ open class FRSwitch: UIControl {
         if arc == nil {
             arc = CAShapeLayer()
             thumbView.layer.addSublayer(arc!)
-            arc!.path = UIBezierPath(
-                roundedRect: CGRect(x: 0, y: 0, width: initialFrame.height, height: initialFrame.height),
-                cornerRadius: thumbView.layer.cornerRadius).cgPath
         }
+        arc!.path = UIBezierPath(
+            roundedRect: CGRect(x: 0, y: 0, width: initialFrame.height, height: initialFrame.height),
+            cornerRadius: thumbView.layer.cornerRadius).cgPath
         arc!.lineWidth = thumbBorderWidth
         arc!.strokeStart = 0
         arc!.strokeEnd = 1
