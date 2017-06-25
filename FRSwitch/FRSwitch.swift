@@ -64,14 +64,14 @@ open class FRSwitch: UIControl {
         }
     }
 
-    /// Knob color. Defaults to light gray.
+    /// Thumb color. Defaults to light gray.
     @IBInspectable open var thumbOffColor: UIColor = UIColor.lightGray {
         didSet {
             setupThumb()
         }
     }
 
-    /// Knob color when the switch is on. Defaults to white.
+    /// Thumb color when the switch is on. Defaults to white.
     @IBInspectable open var thumbOnColor: UIColor = UIColor.white {
         didSet {
             setupThumb()
@@ -92,7 +92,7 @@ open class FRSwitch: UIControl {
         }
     }
 
-    /// Shadow color of the knob. Defaults to gray.
+    /// Thumb shadow color. Defaults to gray.
     @IBInspectable open var thumbShadowColor: UIColor = UIColor.gray {
         didSet {
             setupThumb()
@@ -117,8 +117,7 @@ open class FRSwitch: UIControl {
     }
 
     /// Sets the image that shows when the switch is on.
-    /// The image is centered in the area not covered by the knob.
-    /// Make sure to size your images appropriately.
+    /// The image is centered in the thumb.
     @IBInspectable open var onImage: UIImage! {
         willSet {
             onImageView.image = newValue
@@ -126,8 +125,7 @@ open class FRSwitch: UIControl {
     }
 
     /// Sets the image that shows when the switch is off.
-    /// The image is centered in the area not covered by the knob.
-    /// Make sure to size your images appropriately.
+    /// The image is centered in the thumb.
     @IBInspectable open var offImage: UIImage! {
         willSet {
             offImageView.image = newValue
@@ -150,11 +148,11 @@ open class FRSwitch: UIControl {
     }
 
     /// Sets the text that shows when the switch is on.
-    /// The text is centered in the area not covered by the knob.
+    /// The text is centered in the area not covered by the thumb.
     open var onLabel: UILabel!
 
     /// Sets the text that shows when the switch is off.
-    /// The text is centered in the area not covered by the knob.
+    /// The text is centered in the area not covered by the thumb.
     open var offLabel: UILabel!
 
     // MARK: - Initialization
@@ -302,11 +300,11 @@ open class FRSwitch: UIControl {
     }
 
     func setValueLayout(value: Bool, _ animated: Bool) {
-        let knobWidth: CGFloat = initialFrame.height
+        let thumbWidth: CGFloat = initialFrame.height
 
-        let frameX = value ? self.initialFrame.width - knobWidth : 1
+        let frameX = value ? self.initialFrame.width - thumbWidth : 1
         let frameY = self.thumbView.frame.origin.y
-        let frameWidth = knobWidth
+        let frameWidth = thumbWidth
         let frameHeight = self.thumbView.frame.size.height
 
         let funkyBlock = {
