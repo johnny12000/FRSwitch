@@ -147,6 +147,12 @@ open class FRSwitch: UIControl {
         }
     }
 
+    override open var isEnabled: Bool {
+        didSet {
+            setupThumb()
+        }
+    }
+
     /// Sets the text that shows when the switch is on.
     /// The text is centered in the area not covered by the thumb.
     open var onLabel: UILabel!
@@ -269,8 +275,8 @@ open class FRSwitch: UIControl {
         arc!.strokeStart = 0
         arc!.strokeEnd = 1
         arc!.lineCap = "round"
-        arc!.strokeColor = isOn ? thumbBorderOnColor.cgColor : thumbBorderOffColor.cgColor
-        arc!.fillColor = isOn ? thumbOnColor.cgColor : thumbOffColor.cgColor
+        arc!.strokeColor = isOn && isEnabled ? thumbBorderOnColor.cgColor : thumbBorderOffColor.cgColor
+        arc!.fillColor = isOn  && isEnabled ? thumbOnColor.cgColor : thumbOffColor.cgColor
         arc!.shadowColor = thumbShadowColor.cgColor
         arc!.frame = CGRect(x: 0, y: 0, width: initialFrame.height, height: initialFrame.height)
 
