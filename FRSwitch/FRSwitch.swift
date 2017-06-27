@@ -313,17 +313,17 @@ open class FRSwitch: UIControl {
         let frameWidth = thumbWidth
         let frameHeight = self.thumbView.frame.size.height
 
-        let funkyBlock = {
+        let setupFrameBlock = {
             self.thumbView.frame = CGRect(x: frameX, y: frameY, width: frameWidth, height: frameHeight)
         }
 
         if animated {
             UIView.animate(withDuration: 0.3, delay: 0.0, options: [.curveEaseOut, .beginFromCurrentState],
                            animations: {
-                                funkyBlock()
+                                setupFrameBlock()
                             })
         } else {
-            funkyBlock()
+            setupFrameBlock()
         }
 
         setupBackground()
