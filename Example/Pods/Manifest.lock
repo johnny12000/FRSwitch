@@ -1,0 +1,16 @@
+PODS:
+  - FRSwitch (0.1.0)
+
+DEPENDENCIES:
+  - FRSwitch (from `../`)
+
+EXTERNAL SOURCES:
+  FRSwitch:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  FRSwitch: 82cb72f17c4fcf0b6a81654f551958a1b0727d37
+
+PODFILE CHECKSUM: ac10b70188b2f8abf1926fb41fa542fd5e2194f6
+
+COCOAPODS: 1.2.1

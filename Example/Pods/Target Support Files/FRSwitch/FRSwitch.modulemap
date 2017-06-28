@@ -1,0 +1,6 @@
+framework module FRSwitch {
+  umbrella header "FRSwitch-umbrella.h"
+
+  export *
+  module * { export * }
+}
