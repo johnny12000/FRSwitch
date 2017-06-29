@@ -36,6 +36,9 @@
                             <constraint firstItem="8Be-wW-HsV" firstAttribute="centerY" secondItem="kh9-bI-dsS" secondAttribute="centerY" id="diJ-ab-P6d"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="testSwitch" destination="8Be-wW-HsV" id="CYi-zW-aEO"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>

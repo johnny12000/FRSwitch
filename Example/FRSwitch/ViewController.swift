@@ -7,12 +7,15 @@
 //
 
 import UIKit
+import FRSwitch
 
 class ViewController: UIViewController {
 
+    @IBOutlet var testSwitch: FRSwitch!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        testSwitch.on = true
     }
 
     override func didReceiveMemoryWarning() {
