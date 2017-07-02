@@ -79,14 +79,14 @@ open class FRSwitch: UIControl {
     }
 
     /// Thumb border color when the switch is on. Defaults to dark grey.
-    @IBInspectable var thumbBorderOnColor: UIColor = UIColor.darkGray {
+    @IBInspectable open var thumbBorderOnColor: UIColor = UIColor.darkGray {
         didSet {
             setupThumb()
         }
     }
 
     /// Thumb border color when the switch is off. Defaults to dark grey.
-    @IBInspectable var thumbBorderOffColor: UIColor = UIColor.darkGray {
+    @IBInspectable open var thumbBorderOffColor: UIColor = UIColor.darkGray {
         didSet {
             setupThumb()
         }
