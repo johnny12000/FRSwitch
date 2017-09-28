@@ -374,7 +374,7 @@ open class FRSwitch: UIControl {
         setValueLayout(value: on, true)
     }
 
-    func switchTapped(_ sender: Any) {
+    @objc func switchTapped(_ sender: Any) {
         setOn(!on, animated: true)
         sendActions(for: UIControlEvents.valueChanged)
     }
