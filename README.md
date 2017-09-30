@@ -1,5 +1,7 @@
 # FRSwitch #
 
+[![CI Status](http://img.shields.io/travis/johnny12000/FRSwitch.svg?style=flat)](https://travis-ci.org/johnny12000/FRSwitch)
+
 UISwitch control is great but difficult to customize. This control is created with idea to easily enable developers way to make control as designers have envisioned it. 
 This is still work in progress, any feedback or idea is welcome :)
 
