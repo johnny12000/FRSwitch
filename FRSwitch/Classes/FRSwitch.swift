@@ -219,14 +219,14 @@ open class FRSwitch: UIControl {
                                                 width: initialFrame.width - initialFrame.height,
                                                 height: initialFrame.height))
         onImageView.alpha = 1.0
-        onImageView.contentMode = UIViewContentMode.center
+        onImageView.contentMode = UIView.ContentMode.center
         backgroundView.addSubview(onImageView)
 
         offImageView = UIImageView(frame: CGRect(x: initialFrame.height, y: 0,
                                                  width: initialFrame.width - initialFrame.height,
                                                  height: initialFrame.height))
         offImageView.alpha = 1.0
-        offImageView.contentMode = UIViewContentMode.center
+        offImageView.contentMode = UIView.ContentMode.center
         backgroundView.addSubview(offImageView)
     }
 
@@ -274,7 +274,7 @@ open class FRSwitch: UIControl {
         arc!.lineWidth = thumbBorderWidth
         arc!.strokeStart = 0
         arc!.strokeEnd = 1
-        arc!.lineCap = "round"
+        arc!.lineCap = CAShapeLayerLineCap(rawValue: "round")
         arc!.strokeColor = isOn && isEnabled ? thumbBorderOnColor.cgColor : thumbBorderOffColor.cgColor
         arc!.fillColor = isOn  && isEnabled ? thumbOnColor.cgColor : thumbOffColor.cgColor
         arc!.shadowColor = thumbShadowColor.cgColor
@@ -286,8 +286,8 @@ open class FRSwitch: UIControl {
                                                        height: thumbView.frame.size.height))
             thumbView.addSubview(thumbImageView)
         }
-        thumbImageView.contentMode = UIViewContentMode.center
-        thumbImageView.autoresizingMask = UIViewAutoresizing.flexibleWidth
+        thumbImageView.contentMode = UIView.ContentMode.center
+        thumbImageView.autoresizingMask = UIView.AutoresizingMask.flexibleWidth
     }
 
     override open func layoutSubviews() {
@@ -320,8 +320,8 @@ open class FRSwitch: UIControl {
         if animated {
             UIView.animate(withDuration: 0.3, delay: 0.0, options: [.curveEaseOut, .beginFromCurrentState],
                            animations: {
-                                setupFrameBlock()
-                            })
+                            setupFrameBlock()
+            })
         } else {
             setupFrameBlock()
         }
@@ -365,7 +365,7 @@ open class FRSwitch: UIControl {
         super.endTracking(touch, with: event)
         if currentVisualValue != on {
             setOn(!self.on, animated: true)
-            sendActions(for: UIControlEvents.valueChanged)
+            sendActions(for: UIControl.Event.valueChanged)
         }
     }
 
@@ -376,7 +376,7 @@ open class FRSwitch: UIControl {
 
     @objc func switchTapped(_ sender: Any) {
         setOn(!on, animated: true)
-        sendActions(for: UIControlEvents.valueChanged)
+        sendActions(for: UIControl.Event.valueChanged)
     }
 
 }
