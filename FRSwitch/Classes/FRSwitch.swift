@@ -274,7 +274,7 @@ open class FRSwitch: UIControl {
         arc!.lineWidth = thumbBorderWidth
         arc!.strokeStart = 0
         arc!.strokeEnd = 1
-        arc!.lineCap = "round"
+        arc!.lineCap = CAShapeLayerLineCap(rawValue: "round")
         arc!.strokeColor = isOn && isEnabled ? thumbBorderOnColor.cgColor : thumbBorderOffColor.cgColor
         arc!.fillColor = isOn  && isEnabled ? thumbOnColor.cgColor : thumbOffColor.cgColor
         arc!.shadowColor = thumbShadowColor.cgColor
